@@ -4,6 +4,8 @@ endif
 
 set nocompatible
 
+set path+=**
+
 " automatically indent new lines
 set autoindent
 
@@ -20,10 +22,16 @@ set ruler
 " show command and insert mode
 set showmode
 
-set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+set colorcolumn=80
+set textwidth=72
+set scrolloff=8
+set tabstop=4 
+set shiftwidth=4 
+set softtabstop=4 
 set smartindent 
 set smarttab
-
+set wildmenu
+	
 if v:version >= 800
 	" stop vim from silently messing with files that it shouldn't
 	set nofixendofline
@@ -40,10 +48,6 @@ endif
 if has("match")
 	match ErroMsg '\s\+$'
 endif
-
-set colorcolumn=80
-set textwidth=72
-set scrolloff=8
 
 " replace tabs with spaces automatically
 set expandtab
@@ -116,24 +120,75 @@ filetype plugin on
 
 set background=dark
 
+" Set splitscreen to show bellow
+set splitbelow
+
+" split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-w><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Edit/Reload vimrc configuration files
 nnoremap confe :e $HOME/.vimrc<CR>
 nnoremap confr :source $HOME/.vimrc<CR>
  
 set ruf=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
 
-"colorscheme pablo
+colorscheme pablo
 
 highlight Comment cterm=italic gui=italic
 set clipboard=unnamedplus
 set cursorline
 set showcmd
 
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
+
+" run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'scrooloose/nerdtree'
+Plug 'morhetz/gruvbox'
 call plug#end()
+
+" pandoc
+let g:pancoc#formatting#mode = 'h' 
+let g:pandoc#formatting#textwidth = 72
+
+" goland
+let g:go_fmt_fail_silently = 0
+let g:go_fmt_command = 'goimports'
+let g:go_fmt_autosave = 1
+let g:go_gopls_enabled = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_diagnostic_errors = 1
+let g:go_highlight_diagnostic_warnings = 1
+let g:go_auto_sameids = 0
+set updatetime=100
+
+" NerdTtree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+"nnoremap <C-f> :NERDTreeFind<CR>
+

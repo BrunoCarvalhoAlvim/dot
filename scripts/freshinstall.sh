@@ -2,7 +2,7 @@
 
 # Build environment
 sudo apt update; \
-    sudo apt install 
+    sudo apt install -y \ 
     make \
     build-essential \
     libssl-dev zlib1g-dev \
