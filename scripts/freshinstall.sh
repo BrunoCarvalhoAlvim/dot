@@ -18,4 +18,6 @@ sudo apt update; \
     libxml2-dev \
     libxmlsec1-dev \
     libffi-dev \
-    liblzma-dev
+    liblzma-dev \
+    libcurses-perl
+

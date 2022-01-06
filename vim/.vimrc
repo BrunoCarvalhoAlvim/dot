@@ -160,11 +160,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'scrooloose/nerdtree'
-Plug 'morhetz/gruvbox'
 call plug#end()
 
 " pandoc
-let g:pancoc#formatting#mode = 'h' 
+let g:pancoc#formatting#mode = 'h' " A'
 let g:pandoc#formatting#textwidth = 72
 
 " goland
