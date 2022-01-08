@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Reporta os casos de corona virus de uma forma amigável ao terminal
+# Aceita um argumento opicional para uma regiao especifica
+# Visto originalmente em https://github.com/rwxrob/dot/blob/main/scripts/covid
+
+curl https://corona-stats.online/$1

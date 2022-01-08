@@ -163,8 +163,8 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " pandoc
-let g:pancoc#formatting#mode = 'h' " A'
-let g:pandoc#formatting#textwidth = 72
+"let g:pancoc#formatting#mode = 'h' " A'
+"let g:pandoc#formatting#textwidth = 72
 
 " goland
 let g:go_fmt_fail_silently = 0
