@@ -11,6 +11,9 @@ $SIG{"INT"} = \&handle;
 
 #
 # BUT FIRST:
+#
+# go and check it out the original script made by rwxrob at https: //github.com/rwxrob
+#
 # Keep in mind that you probably have to install libcurses-perl
 # and Term::Animation from CPAN for this to work:
 #
