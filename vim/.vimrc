@@ -14,10 +14,10 @@ set autowrite
 
 " active line numbers
 set number
-set relativenumber
+" set relativenumber
 
 " turn col and row position in bottom right
-set ruler
+" set ruler
 
 " show command and insert mode
 set showmode
@@ -53,15 +53,6 @@ endif
 set expandtab
 
 " backuo stuff
-"set backup
-"set backupdir =$HOME/.vim/files/backup/
-"set backupext =-vimbackup
-"set backupskip =
-"set directory =$HOME/.vim/files/swap/
-"set updatecount =100
-"set undofile
-"set undodir =$HOME/.vim/files/undo/
-"set viminfo ='100,n$HOME/.vim/files/info/viminfo
 set nobackup
 set noswapfile
 set nowritebackup
@@ -163,8 +154,8 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " pandoc
-"let g:pancoc#formatting#mode = 'h' " A'
-"let g:pandoc#formatting#textwidth = 72
+let g:pancoc#formatting#mode = 'h' " A'
+let g:pandoc#formatting#textwidth = 72
 
 " goland
 let g:go_fmt_fail_silently = 0
@@ -189,5 +180,3 @@ set updatetime=100
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-"nnoremap <C-f> :NERDTreeFind<CR>
-
