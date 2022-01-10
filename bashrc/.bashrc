@@ -9,13 +9,16 @@ case $- in
 esac
 
 # environment variables
-
 export EDITOR=vi
 export VISUAL=vi
 export EDITOR_PREFIX=vi
 export DOTFILES="$HOME/dot"
 export SCRIPTS="$DOTFILES/scripts"
 export REPOS="$HOME/ExtraDrive/Repos"
+export PYENV_ROOT="$HOME/.pyenv"
+export DOCUMENTS="$HOME/Documents"
+export DOWNLOADS="$HOME/Downloads"
+export DESKTOP="$HOME/Desktop"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -28,6 +31,7 @@ shopt -s histappend
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
+# vi mode on bash
 set -o vi
 
 # check the window size after each command and, if necessary,
@@ -36,7 +40,13 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
+
+# other bash shell options
+shopt -s expand_aliases
+shopt -s globstar
+shopt -s dotglob
+shopt -s extglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -45,44 +55,6 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    alacritty) color_prompt=yes;;
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;85m\]\u\[\033[37m\]:\[\033[38;5;75m\]\W\[\033[37m\]\$\[\033[0m\] '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \W\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -97,16 +69,8 @@ fi
 
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -116,6 +80,22 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+alias d='date'
+alias la='ls -lhaF'
+alias l='ls -CF'
+alias path='echo $PATH'
+alias vi='vim'
+alias c='printf "\e[H\e[2J"'
+alias df='df -h'
+alias free='free -h'
+alias scripts='cd $SCRIPTS'
+alias repos='cd $REPOS' 
+alias dot='cd $DOTFILES'
+alias pomo='~/go/bin/pomo'
+alias documents='cd $DOCUMENTS'
+alias downloads='cd $DOWNLOADS'
+alias desktop='cd $DESKTOP'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -129,7 +109,7 @@ if ! shopt -oq posix; then
 fi
 
 # Changes to PATH go here
-export PATH=$PATH:/usr/local/go/bin:~/scripts
+export PATH="$PYENV_ROOT/bin:$PATH:/usr/local/go/bin:$SCRIPTS"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -137,3 +117,5 @@ parse_git_branch() {
 
 export PS1="\[\033[00;38;5;240m\]╔ \[\033[01;38;5;219m\]\u\[\033[37m\]:\[\033[38;5;75m\]\W\[\033[01;31m\]\$(parse_git_branch)
 \[\033[00;38;5;240m\]╚\[\033[38;5;75m\] $\[\033[0m\] "
+
+eval "$(pyenv init --path)"
