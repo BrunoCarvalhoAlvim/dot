@@ -112,6 +112,8 @@ fi
 # Changes to PATH go here
 export PATH="$PYENV_ROOT/bin:$PATH:/usr/local/go/bin:$SCRIPTS"
 
+export CDPATH=".:$DOT:$REPOS:$HOME"
+
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
