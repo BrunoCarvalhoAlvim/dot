@@ -20,6 +20,7 @@ export DOCUMENTS="$HOME/Documents"
 export DOWNLOADS="$HOME/Downloads"
 export DESKTOP="$HOME/Desktop"
 export EXTRADRIVE="$HOME/ExtraDrive"
+export POETRY="$HOME/.local/bin"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -82,6 +83,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+#unalias -a
+alias '?'=duck
 alias d='date'
 alias la='ls -lhaF'
 alias l='ls -CF'
@@ -110,7 +113,7 @@ if ! shopt -oq posix; then
 fi
 
 # Changes to PATH go here
-export PATH="$PYENV_ROOT/bin:$PATH:/usr/local/go/bin:$SCRIPTS"
+export PATH="$PYENV_ROOT/bin:$POETRY:$SCRIPTS:$PATH:/usr/local/go/bin"
 
 export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$HOME"
 
