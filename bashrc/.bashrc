@@ -57,7 +57,7 @@ fi
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls -h --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
@@ -87,6 +87,7 @@ alias l='ls -CF'
 alias x='exit'
 alias vi='vim'
 alias c='printf "\e[H\e[2J"'
+alias c='printf "\e[H\e[2J"'
 alias df='df -h'
 alias free='free -h'
 alias scripts='cd $SCRIPTS'
@@ -96,6 +97,7 @@ alias pomo='~/go/bin/pomo'
 alias documents='cd $DOCUMENTS'
 alias downloads='cd $DOWNLOADS'
 alias desktop='cd $DESKTOP'
+alias chmodx='chmod +x'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -108,8 +110,48 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Changes to PATH go here
-export PATH="$PYENV_ROOT/bin:$POETRY:$SCRIPTS:$PATH:/usr/local/go/bin"
+# PATH 
+#export PATH="$PYENV_ROOT/bin:$POETRY:$SCRIPTS:$PATH:/usr/local/go/bin"
+pathappend() {
+  declare arg
+  for arg in "$@"; do
+    test -d "$arg" || continue
+    PATH=${PATH//":$arg:"/:}
+    PATH=${PATH/#"$arg:"/}
+    PATH=${PATH/%":$arg"/}
+    export PATH="${PATH:+"$PATH:"}$arg"
+  done
+} && export pathappend
+
+pathprepend() {
+  for arg in "$@"; do
+    test -d "$arg" || continue
+    PATH=${PATH//:"$arg:"/:}
+    PATH=${PATH/#"$arg:"/}
+    PATH=${PATH/%":$arg"/}
+    export PATH="$arg${PATH:+":${PATH}"}"
+  done
+} && export pathprepend
+
+# remember last arg will be first in path
+pathprepend \
+  /usr/local/go/bin \
+  "$HOME/.local/bin" \
+  "$SCRIPTS" \
+  "$PYENV_ROOT/bin"
+
+pathappend \
+  /usr/local/opt/coreutils/libexec/gnubin \
+  /mingw64/bin \
+  /usr/local/bin \
+  /usr/local/sbin \
+  /usr/local/games \
+  /usr/games \
+  /usr/sbin \
+  /usr/bin \
+  /snap/bin \
+  /sbin \
+  /bin
 
 # Smart cd
 export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$HOME"
