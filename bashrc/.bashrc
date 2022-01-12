@@ -25,10 +25,8 @@ export POETRY="$HOME/.local/bin"
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 export HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=5000
 export HISTFILESIZE=10000
@@ -39,11 +37,9 @@ set -o vi
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
-
 # other bash shell options
 shopt -s expand_aliases
 shopt -s globstar
@@ -115,8 +111,10 @@ fi
 # Changes to PATH go here
 export PATH="$PYENV_ROOT/bin:$POETRY:$SCRIPTS:$PATH:/usr/local/go/bin"
 
+# Smart cd
 export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$HOME"
 
+# Show git branch in terminal
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
