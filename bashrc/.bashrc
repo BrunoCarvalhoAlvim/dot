@@ -19,6 +19,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export DOCUMENTS="$HOME/Documents"
 export DOWNLOADS="$HOME/Downloads"
 export DESKTOP="$HOME/Desktop"
+export EXTRADRIVE="$HOME/ExtraDrive"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -84,7 +85,6 @@ fi
 alias d='date'
 alias la='ls -lhaF'
 alias l='ls -CF'
-alias path='echo $PATH'
 alias x='exit'
 alias vi='vim'
 alias c='printf "\e[H\e[2J"'
@@ -112,7 +112,7 @@ fi
 # Changes to PATH go here
 export PATH="$PYENV_ROOT/bin:$PATH:/usr/local/go/bin:$SCRIPTS"
 
-export CDPATH=".:$DOT:$REPOS:$HOME"
+export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$HOME"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
