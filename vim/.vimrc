@@ -17,7 +17,7 @@ set number
 " set relativenumber
 
 " turn col and row position in bottom right
-" set ruler
+set ruler
 
 " show command and insert mode
 set showmode
@@ -126,11 +126,11 @@ nnoremap confr :source $HOME/.vimrc<CR>
  
 set ruf=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
 
-colorscheme pablo
+"colorscheme pablo
 
-highlight Comment cterm=italic gui=italic
+"highlight Comment cterm=italic gui=italic
 set clipboard=unnamedplus
-set cursorline
+"set cursorline
 set showcmd
 
 " install vim-plug if not found
