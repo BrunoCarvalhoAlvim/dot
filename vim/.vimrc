@@ -24,7 +24,7 @@ set showmode
 
 set colorcolumn=80
 set textwidth=72
-set scrolloff=8
+set scrolloff=10
 set tabstop=4 
 set shiftwidth=4 
 set softtabstop=4 
@@ -62,6 +62,7 @@ set nohlsearch
 "set hlsearch
 set incsearch
 set linebreak
+set ignorecase
 
 set shortmess=aoOtTI
 
