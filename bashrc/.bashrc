@@ -21,6 +21,8 @@ export DOWNLOADS="$HOME/Downloads"
 export DESKTOP="$HOME/Desktop"
 export EXTRADRIVE="$HOME/ExtraDrive"
 export POETRY="$HOME/.local/bin"
+export WORKSPACES="$HOME/ExtraDrive/containers/Workspaces"
+export ZETDIR="$HOME/ExtraDrive/Repos/zet"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -99,6 +101,8 @@ alias downloads='cd $DOWNLOADS'
 alias desktop='cd $DESKTOP'
 alias chmodx='chmod +x'
 alias top=htop
+alias ..='cd ..'
+alias ....='cd ../..'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
