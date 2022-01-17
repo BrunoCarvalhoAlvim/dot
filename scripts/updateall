@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Atualizando pacotes do sistema"; \
+sudo apt update; \
+echo "Atualizando pyenv";
+pyenv update; \
+echo "Atualizando pip";
+pip install --upgrade pip; \
+echo "Atualizando poetry"; \
+poetry self update
