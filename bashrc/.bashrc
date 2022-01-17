@@ -57,15 +57,15 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -h --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+#if [ -x /usr/bin/dircolors ]; then
+#    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+#    alias ls='ls -h --color=auto'
+#    #alias dir='dir --color=auto'
+#    #alias vdir='vdir --color=auto'
+#    alias grep='grep --color=auto'
+#    alias fgrep='fgrep --color=auto'
+#    alias egrep='egrep --color=auto'
+#fi
 
 
 # colored GCC warnings and errors
@@ -103,6 +103,12 @@ alias chmodx='chmod +x'
 alias top=htop
 alias ..='cd ..'
 alias ....='cd ../..'
+alias ls='ls -h --color=auto'
+#alias dir='dir --color=auto'
+#alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
