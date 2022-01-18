@@ -1,6 +1,5 @@
-* Os arquivos de configuração do lynx devem estar instalados dentro da pasta .config em seu diretótio home.
-* Necessário que seja criado um script para leitura destes arquivos, veja scritp lynx nos scripts.
-* Para que o script seja lido antes do binário do lynx, sua pasta de scripts precisa estar na frente no \$PATH
-
+* instale as configurações com o .setup
+* para que tudo funcione será necessária a instalaçào do scritp [lynx](https://github.com/BrunoCarvalhoAlvim/dot/blob/main/scripts/lynx).
+    * o script precisa ser encontrado pelo shell antes do binário original, portanto será necessário alterar o seu path para que a basta onde está armazenado seu script venha antes da pasta /usr/bin/lynx. O script altera a fonte dos arquivos de configuração do lynx, permitindo utilizar comandos do vi.
 
 
