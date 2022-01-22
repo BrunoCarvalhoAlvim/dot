@@ -155,7 +155,7 @@ pathappend \
   /bin
 
 # Smart cd
-export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$HOME"
+export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS/github.com:$HOME"
 
 # Show git branch in terminal
 parse_git_branch() {
