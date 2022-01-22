@@ -56,18 +56,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# enable color support of ls and also add handy aliases
-#if [ -x /usr/bin/dircolors ]; then
-#    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-#    alias ls='ls -h --color=auto'
-#    #alias dir='dir --color=auto'
-#    #alias vdir='vdir --color=auto'
-#    alias grep='grep --color=auto'
-#    alias fgrep='fgrep --color=auto'
-#    alias egrep='egrep --color=auto'
-#fi
-
-
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -81,7 +69,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-#unalias -a
+unalias -a
 alias '?'=duck
 alias d='date'
 alias la='ls -lhaF'
@@ -109,6 +97,7 @@ alias ls='ls -h --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias more=less
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -146,6 +135,7 @@ pathprepend() {
 
 # remember last arg will be first in path
 pathprepend \
+  "$HOME/Appimages" \
   /usr/local/go/bin \
   "$HOME/.local/bin" \
   "$SCRIPTS" \
@@ -172,7 +162,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1="\[\033[00;38;5;240m\]╔ \[\033[01;38;5;219m\]\u\[\033[37m\]:\[\033[38;5;75m\]\W\[\033[01;31m\]\$(parse_git_branch)
-\[\033[00;38;5;240m\]╚\[\033[38;5;75m\] $\[\033[0m\] "
+export PS1="\[\033[00;38;5;240m\]╔ \[\033[01;38;5;219m\]\u\[\033[00;38;5;240m\]:\[\033[38;5;105m\]\W\[\033[01;31m\]\$(parse_git_branch)
+\[\033[00;38;5;240m\]╚\[\033[38;5;105m\] $\[\033[0m\] "
 
 eval "$(pyenv init --path)"
