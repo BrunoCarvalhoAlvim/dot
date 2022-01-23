@@ -92,8 +92,6 @@ alias top=htop
 alias ..='cd ..'
 alias ....='cd ../..'
 alias ls='ls -h --color=auto'
-#alias dir='dir --color=auto'
-#alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -111,7 +109,6 @@ if ! shopt -oq posix; then
 fi
 
 # PATH 
-#export PATH="$PYENV_ROOT/bin:$POETRY:$SCRIPTS:$PATH:/usr/local/go/bin"
 
 pathappend() {
   declare arg
@@ -161,8 +158,58 @@ export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$REPOS/github.com:$HOME"
 #Prompt
 
 # Show git branch in terminal
+#parse_git_branch() {
+#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+#}
+
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+	local s='';
+	local branchName='';
+
+	# Check if the current directory is in a Git repository.
+	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+
+		# check if the current directory is in .git before running git checks
+		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+
+			# Ensure the index is up to date.
+			git update-index --really-refresh -q &>/dev/null;
+
+			# Check for uncommitted changes in the index.
+			if ! $(git diff --quiet --ignore-submodules --cached); then
+				s+='+';
+			fi;
+
+			# Check for unstaged changes.
+			if ! $(git diff-files --quiet --ignore-submodules --); then
+				s+='!';
+			fi;
+
+			# Check for untracked files.
+			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+				s+='?';
+			fi;
+
+			# Check for stashed files.
+			if $(git rev-parse --verify refs/stash &>/dev/null); then
+				s+='$';
+			fi;
+
+		fi;
+
+		# Get the short symbolic ref.
+		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
+		# Otherwise, just give up.
+		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+			git rev-parse --short HEAD 2> /dev/null || \
+			echo '(unknown)')";
+
+		[ -n "${s}" ] && s=" [${s}]";
+
+		echo -e "${1}${branchName}${2}${s}";
+	else
+		return;
+	fi;
 }
 
 red=$(tput setaf 196);
@@ -170,21 +217,31 @@ orange=$(tput setaf 166);
 yellow=$(tput setaf 228);
 green=$(tput setaf 71);
 white=$(tput setaf 15);
+blue=$(tput setaf 153);
 bold=$(tput bold);
 reset=$(tput sgr0);
 
-PS1="\[${bold}\]\n";
-PS1+="\[${orange}\]\u"; #usuario
-PS1+="\[${white}\] at ";
-PS1+="\[${yellow}\]\h" #host
-PS1+="\[${white}\] in ";
-PS1+="\[${green}\]\W"; #diretorio
-PS1+="\[${red}\]\$(parse_git_branch)";
-PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]";
-export PS1;
+#PS1="\[${bold}\]\n";
+#PS1+="\[${orange}\]\u"; #usuario
+#PS1+="\[${white}\] at ";
+#PS1+="\[${yellow}\]\h" #host
+#PS1+="\[${white}\] in ";
+#PS1+="\[${green}\]\W"; #diretorio
+#PS1+="\$(parse_git_branch \"\[${white}\] on \[${red}\]\" \"\[${blue}\]\")"; # Git repository details
+#PS1+="\n";
+#PS1+="\[${white}\]\$ \[${reset}\]";
+#export PS1;
 
-#export PS1="\[\033[00;38;5;240m\]╔ \[\033[01;38;5;219m\]\u\[\033[00;38;5;240m\]:\[\033[38;5;105m\]\W\[\033[01;31m\]\$(parse_git_branch)
-#\[\033[00;38;5;240m\]╚\[\033[38;5;105m\] $\[\033[0m\] "
+PS1="\n";
+PS1+="\[\033[00;38;5;240m\]╔ ";
+PS1+="\[\033[01;38;5;219m\]\u";
+PS1+="\[\033[00;38;5;240m\]:";
+PS1+="\[\033[38;5;105m\]\W";
+PS1+="\$(parse_git_branch \"\[${white}\] on \[${red}\]\" \"\[${blue}\]\")"; # Git repository details
+PS1+="\n";
+PS1+="\[\033[00;38;5;240m\]╚ ";
+PS1+="\[\033[38;5;105m\]\$ ";
+PS1+="\[${reset}\]"
+export PS1;
 
 eval "$(pyenv init --path)"
