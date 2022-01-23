@@ -1,4 +1,4 @@
-# Apenas mais um repositório de dotfiles
+# Dotfiles
 
 * Inspirado em :
     * [rwxrob](https://github.com/rwxrob/dot)
