@@ -112,6 +112,7 @@ fi
 
 # PATH 
 #export PATH="$PYENV_ROOT/bin:$POETRY:$SCRIPTS:$PATH:/usr/local/go/bin"
+
 pathappend() {
   declare arg
   for arg in "$@"; do
@@ -155,14 +156,35 @@ pathappend \
   /bin
 
 # Smart cd
-export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS/github.com:$HOME"
+export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$REPOS/github.com:$HOME"
+
+#Prompt
 
 # Show git branch in terminal
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1="\[\033[00;38;5;240m\]╔ \[\033[01;38;5;219m\]\u\[\033[00;38;5;240m\]:\[\033[38;5;105m\]\W\[\033[01;31m\]\$(parse_git_branch)
-\[\033[00;38;5;240m\]╚\[\033[38;5;105m\] $\[\033[0m\] "
+red=$(tput setaf 196);
+orange=$(tput setaf 166);
+yellow=$(tput setaf 228);
+green=$(tput setaf 71);
+white=$(tput setaf 15);
+bold=$(tput bold);
+reset=$(tput sgr0);
+
+PS1="\[${bold}\]\n";
+PS1+="\[${orange}\]\u"; #usuario
+PS1+="\[${white}\] at ";
+PS1+="\[${yellow}\]\h" #host
+PS1+="\[${white}\] in ";
+PS1+="\[${green}\]\W"; #diretorio
+PS1+="\[${red}\]\$(parse_git_branch)";
+PS1+="\n";
+PS1+="\[${white}\]\$ \[${reset}\]";
+export PS1;
+
+#export PS1="\[\033[00;38;5;240m\]╔ \[\033[01;38;5;219m\]\u\[\033[00;38;5;240m\]:\[\033[38;5;105m\]\W\[\033[01;31m\]\$(parse_git_branch)
+#\[\033[00;38;5;240m\]╚\[\033[38;5;105m\] $\[\033[0m\] "
 
 eval "$(pyenv init --path)"
