@@ -236,7 +236,7 @@ reset=$(tput sgr0);
 #PS1+="\[${white}\]\$ \[${reset}\]";
 #export PS1;
 
-PS1="\n";
+PS1="\n"; #add space for virtual environment stuff
 PS1+="\[${grey}\]╔ ";
 PS1+="\[${pink}\]\u"; #user
 PS1+="\[${grey}\]:";
