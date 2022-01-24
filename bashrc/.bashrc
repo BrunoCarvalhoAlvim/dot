@@ -212,36 +212,39 @@ parse_git_branch() {
 	fi;
 }
 
+#prompt color setup
+
 red=$(tput setaf 196);
 orange=$(tput setaf 166);
 yellow=$(tput setaf 228);
 green=$(tput setaf 71);
 white=$(tput setaf 15);
 blue=$(tput setaf 153);
+grey=$(tput setaf 238);
+pink=$(tput setaf 205);
 bold=$(tput bold);
 reset=$(tput sgr0);
 
 #PS1="\[${bold}\]\n";
-#PS1+="\[${orange}\]\u"; #usuario
+#PS1+="\[${orange}\]\u"; #user
 #PS1+="\[${white}\] at ";
 #PS1+="\[${yellow}\]\h" #host
 #PS1+="\[${white}\] in ";
-#PS1+="\[${green}\]\W"; #diretorio
+#PS1+="\[${green}\]\W"; #dir
 #PS1+="\$(parse_git_branch \"\[${white}\] on \[${red}\]\" \"\[${blue}\]\")"; # Git repository details
 #PS1+="\n";
 #PS1+="\[${white}\]\$ \[${reset}\]";
 #export PS1;
 
 PS1="\n";
-PS1+="\[\033[00;38;5;240m\]╔ ";
-PS1+="\[\033[01;38;5;219m\]\u";
-PS1+="\[\033[00;38;5;240m\]:";
-PS1+="\[\033[38;5;105m\]\W";
+PS1+="\[${grey}\]╔ ";
+PS1+="\[${pink}\]\u"; #user
+PS1+="\[${grey}\]:";
+PS1+="\[${blue}\]\W"; #dir
 PS1+="\$(parse_git_branch \"\[${white}\] on \[${red}\]\" \"\[${blue}\]\")"; # Git repository details
 PS1+="\n";
-PS1+="\[\033[00;38;5;240m\]╚ ";
-PS1+="\[\033[38;5;105m\]\$ ";
-PS1+="\[${reset}\]"
+PS1+="\[${grey}\]╚ ";
+PS1+="\[${white}\]\$ \[${reset}\]";
 export PS1;
 
 eval "$(pyenv init --path)"
