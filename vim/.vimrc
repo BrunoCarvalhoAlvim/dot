@@ -23,6 +23,8 @@ set ruler
 set showmode
 
 set colorcolumn=80
+highlight ColorColumn ctermbg=0
+
 set textwidth=72
 set scrolloff=10
 set tabstop=4 
