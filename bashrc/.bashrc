@@ -9,7 +9,8 @@ case $- in
 esac
 
 # environment variables
-export EDITOR=vi
+export VISUAL=vi
+export EDITOR="$VISUAL"
 export VISUAL=vi
 export EDITOR_PREFIX=vi
 export DOTFILES="$HOME/dot"
@@ -133,7 +134,7 @@ pathprepend() {
 
 # remember last arg will be first in path
 pathprepend \
-  "$HOME/Appimages" \
+  "$HOME/Appimages/" \
   /usr/local/go/bin \
   "$HOME/.local/bin" \
   "$SCRIPTS" \
