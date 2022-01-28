@@ -23,7 +23,7 @@ export DESKTOP="$HOME/Desktop"
 export EXTRADRIVE="$HOME/ExtraDrive"
 export POETRY="$HOME/.local/bin"
 export WORKSPACES="$HOME/ExtraDrive/containers/Workspaces"
-export ZETDIR="$HOME/ExtraDrive/Repos/zet"
+export ZETDIR="$HOME/ExtraDrive/Repos/github.com/zet"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -82,6 +82,7 @@ alias c='printf "\e[H\e[2J"'
 alias df='df -h'
 alias free='free -h'
 alias scripts='cd $SCRIPTS'
+alias zet='cd $ZETDIR'
 alias repos='cd $REPOS' 
 alias dot='cd $DOTFILES'
 alias pomo='~/go/bin/pomo'
