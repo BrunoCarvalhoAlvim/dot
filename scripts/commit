@@ -1,4 +1,4 @@
 #!/bin/sh
-
-git commit "$@" # This is the way 
+ 
+git commit -S "$@" # This is the way 
 #git commit -m "$@"
