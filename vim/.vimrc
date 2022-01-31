@@ -183,3 +183,6 @@ set updatetime=100
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+"Pandoc
+let g:pandoc#spell#enabled = 0
