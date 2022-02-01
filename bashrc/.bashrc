@@ -98,8 +98,16 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias more=less
+
+# Kubernets
 alias k=kubectl
+source <(kubectl completion bash)
+complete -F __start_kubectl k
+
+# Minikube
 alias mk=minikube
+source <(minikube completion bash)
+complete -F __start_minikube mk
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
