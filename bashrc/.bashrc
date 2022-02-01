@@ -24,6 +24,7 @@ export EXTRADRIVE="$HOME/ExtraDrive"
 export POETRY="$HOME/.local/bin"
 export WORKSPACES="$HOME/ExtraDrive/containers/Workspaces"
 export ZETDIR="$HOME/ExtraDrive/Repos/github.com/zet"
+export APPIMAGES="/home/bruno/Appimages"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -59,7 +60,6 @@ fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -121,7 +121,6 @@ if ! shopt -oq posix; then
 fi
 
 # PATH 
-
 pathappend() {
   declare arg
   for arg in "$@"; do
@@ -145,11 +144,11 @@ pathprepend() {
 
 # remember last arg will be first in path
 pathprepend \
-  "$HOME/Appimages/" \
+  "$APPIMAGES" \
   /usr/local/go/bin \
   "$HOME/.local/bin" \
   "$SCRIPTS" \
-  "$PYENV_ROOT/bin"
+  "$PYENV_ROOT/bin" \
 
 pathappend \
   /usr/local/opt/coreutils/libexec/gnubin \
@@ -168,12 +167,6 @@ pathappend \
 export CDPATH=".:$DOTFILES:$EXTRADRIVE:$REPOS:$REPOS/github.com:$HOME"
 
 #Prompt
-
-# Show git branch in terminal
-#parse_git_branch() {
-#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-#}
-
 parse_git_branch() {
 	local s='';
 	local branchName='';
@@ -225,7 +218,6 @@ parse_git_branch() {
 }
 
 #prompt color setup
-
 red=$(tput setaf 196);
 orange=$(tput setaf 166);
 yellow=$(tput setaf 228);
@@ -259,4 +251,9 @@ PS1+="\[${grey}\]╚ ";
 PS1+="\[${white}\]\$ \[${reset}\]";
 export PS1;
 
+# asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+# Pyenv
 eval "$(pyenv init --path)"
