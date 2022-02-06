@@ -251,6 +251,10 @@ PS1+="\[${grey}\]╚ ";
 PS1+="\[${white}\]\$ \[${reset}\]";
 export PS1;
 
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
