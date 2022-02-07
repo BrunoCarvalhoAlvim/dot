@@ -149,6 +149,7 @@ pathprepend \
   "$HOME/.local/bin" \
   "$SCRIPTS" \
   "$PYENV_ROOT/bin" \
+  /home/bruno/bin/oci-cli-scripts \
 
 pathappend \
   /usr/local/opt/coreutils/libexec/gnubin \
