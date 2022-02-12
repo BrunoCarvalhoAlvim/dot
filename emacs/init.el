@@ -19,6 +19,7 @@
 ;; Habilita mensagens de erro visuais
 (setq visible-bell t)
 
+
 ;; Configura fontes do editor
 (set-face-attribute 'default nil :font "RobotoMono Nerd Font Mono" :height 140)
 
@@ -137,12 +138,17 @@
 (unless (package-installed-p 'evil)
   (package-install 'evil))
 
-(require 'evil)
-(evil-mode 1)
-
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
 
 (use-package evil-collection
   :after evil
+  :ensure t
   :config
   (evil-collection-init))
 
