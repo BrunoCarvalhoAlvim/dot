@@ -13,6 +13,7 @@ export ZETDIR="/home/brunoalvim/Projects/Repos/github.com/me/zet"
 export MEDIR="/home/brunoalvim/Projects/Repos/github.com/me"
 export VISUAL=vi
 export EDITOR="$VISUAL"
+export SCRIPTS="$HOME/scripts"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -126,7 +127,47 @@ fi
 
 # Path modifications 
 
-export PATH=/home/brunoalvim/scripts:/$PATH:/usr/local/go/bin
+#export PATH=/usr/local/go/bin:/home/brunoalvim/scripts:/$PATH
+
+pathappend() {
+  declare arg
+  for arg in "$@"; do
+    test -d "$arg" || continue
+    PATH=${PATH//":$arg:"/:}
+    PATH=${PATH/#"$arg:"/}
+    PATH=${PATH/%":$arg"/}
+    export PATH="${PATH:+"$PATH:"}$arg"
+  done
+} && export pathappend
+
+pathprepend() {
+  for arg in "$@"; do
+    test -d "$arg" || continue
+    PATH=${PATH//:"$arg:"/:}
+    PATH=${PATH/#"$arg:"/}
+    PATH=${PATH/%":$arg"/}
+    export PATH="$arg${PATH:+":${PATH}"}"
+  done
+} && export pathprepend
+
+# remember last arg will be first in path
+pathprepend \
+  /usr/local/bin \
+  /usr/local/go/bin \
+  "$HOME/.local/bin" \
+  "$SCRIPTS" \
+  "$HOME/go/bin"
+
+pathappend \
+  /usr/local/bin \
+  /usr/local/sbin \
+  /usr/local/games \
+  /usr/games \
+  /usr/sbin \
+  /usr/bin \
+  /snap/bin \
+  /sbin \
+  /bin
 
 # Pyenv
 eval "$(pyenv init -)"
