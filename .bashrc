@@ -86,6 +86,8 @@ alias chmodx='chmod +x'
 alias c='printf "\e[H\e[2J"'
 alias clear='printf "\e[H\e[2J"'
 alias ping='ping -c 5'
+alias more=less
+alias top=htop
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
