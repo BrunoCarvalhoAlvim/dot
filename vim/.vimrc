@@ -164,7 +164,7 @@ hi StatusLine ctermfg=black ctermbg=NONE
 hi StatusLineNC ctermfg=black ctermbg=NONE
 hi Normal ctermbg=NONE
 hi Special ctermfg=cyan
-hi LineNr ctermfg=black ctermbg=NONE
+hi LineNr ctermfg=grey ctermbg=NONE
 hi SpecialKey ctermfg=black ctermbg=NONE
 hi ModeMsg ctermfg=black cterm=NONE ctermbg=NONE
 hi MoreMsg ctermfg=black ctermbg=NONE
@@ -185,7 +185,7 @@ au FileType * hi StatusLine ctermfg=black ctermbg=NONE
 au FileType * hi StatusLineNC ctermfg=black ctermbg=NONE
 au FileType * hi Normal ctermbg=NONE
 au FileType * hi Special ctermfg=cyan
-au FileType * hi LineNr ctermfg=black ctermbg=NONE
+au FileType * hi LineNr ctermfg=grey ctermbg=NONE
 au FileType * hi SpecialKey ctermfg=black ctermbg=NONE
 au FileType * hi ModeMsg ctermfg=black cterm=NONE ctermbg=NONE
 au FileType * hi MoreMsg ctermfg=black ctermbg=NONE
