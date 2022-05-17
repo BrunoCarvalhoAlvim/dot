@@ -77,7 +77,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vi="vim"
-alias lynx='docker container run -it --rm rwxrob/lynx '
 alias zet="cd $ZETDIR"
 alias me="cd $MEDIR"
 alias df='df -h'
