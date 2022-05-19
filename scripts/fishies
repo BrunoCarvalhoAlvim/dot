@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-`which keyoff` and `keyoff`;
+#`which keyoff` and `keyoff`;
 
 sub handle {
 	exit(0);
@@ -11,14 +11,11 @@ $SIG{"INT"} = \&handle;
 
 #
 # BUT FIRST:
-#
-# go and check it out the original script made by rwxrob at https: //github.com/rwxrob
-#
 # Keep in mind that you probably have to install libcurses-perl
 # and Term::Animation from CPAN for this to work:
 #
 #     sudo apt install libcurses-perl
-#     sudo cpan Term::Animation
+#     sudo cpan -I Term::Animation
 #
 # Special thanks to @UndeadLeech for adding the transparency. This is
 # the *only* fish/asciiquarium without the default black background.
@@ -316,7 +313,7 @@ q{
        \
      ...\..,
 \  /'       \
- >=  bca(  ' >
+ >=  Gui(  ' >
 /  \      / /
     `"'"'/''
 },
@@ -332,7 +329,7 @@ q{
       /
   ,../...
  /       '\  /
-< '  )bca  =<
+< '  )Gui  =<
  \ \      /  \
   `'\'"'"'
 },

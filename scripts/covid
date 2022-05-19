@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Reporta casos de coronavirus
+# Argumento opcional é seu país (em ingêsm, então brazil ao invés de brasil)
+# Script original é do rwxrob (https://github.com/rwxrob/dot/blob/main/scripts/covid)
+
+
+curl https://corona-stats.online/$1
