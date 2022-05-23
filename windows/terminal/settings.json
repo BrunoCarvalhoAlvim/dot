@@ -30,8 +30,9 @@
         }
     ],
     "copyFormatting": "none",
-    "copyOnSelect": false,
+    "copyOnSelect": true,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "initialCols": 80,
     "profiles": 
     {
         "defaults": {},
@@ -42,14 +43,25 @@
                 "colorScheme": "Gruvbox",
                 "cursorShape": "filledBox",
                 "experimental.retroTerminalEffect": false,
-                "font": 
-                {
-                    "face": "UbuntuMono NF"
-                },
+                "fontFace": "UbuntuMono NF",
+                "fontSize": 16,
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "bellStyle": "none",
+                "closeOnExit": "always",
+                "colorScheme": "Gruvbox",
+                "commandline": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "fontFace": "UbuntuMono NF",
+                "fontSize": 16,
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6102}",
+                "hidden": false,
+                "name": "Git-Bash",
+                "padding": "4",
+                "scrollbarState": "hidden"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -121,7 +133,7 @@
         },
         {
             "background": "#282828",
-            "black": "#282828",
+            "black": "#504945",
             "blue": "#458588",
             "brightBlack": "#928374",
             "brightBlue": "#83A598",
@@ -138,7 +150,7 @@
             "name": "Gruvbox",
             "purple": "#B16286",
             "red": "#CC241D",
-            "selectionBackground": "#EBDBB2",
+            "selectionBackground": "#32fff6",
             "white": "#A89984",
             "yellow": "#D79921"
         },
@@ -303,5 +315,9 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ]
+    ],
+    "theme": "dark",
+    "startOnUserLogin": true,
+    "showTabsInTitlebar": true,
+    "showTerminalTitleInTitlebar": false
 }
